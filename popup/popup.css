@@ -144,6 +144,6 @@ h1 {
     top: -30px;
     left: 0;
     right: 0;
-    display: flex;
+    display: flex; /* fixed truncated 'displa' property */
     align-items: center;
-    justify-cont
+}
