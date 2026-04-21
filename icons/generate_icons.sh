@@ -4,6 +4,7 @@
 
 SIZES=(16 32 48 128)
 SOURCE_SVG="icon.svg"
+OUTPUT_DIR="."
 
 # Check for rsvg-convert first, then fall back to Inkscape
 if command -v rsvg-convert &> /dev/null; then
@@ -20,8 +21,11 @@ if [ ! -f "$SOURCE_SVG" ]; then
   exit 1
 fi
 
+# Create output directory if it doesn't exist
+mkdir -p "$OUTPUT_DIR"
+
 for SIZE in "${SIZES[@]}"; do
-  OUTPUT="icon${SIZE}.png"
+  OUTPUT="${OUTPUT_DIR}/icon${SIZE}.png"
   echo "Generating ${OUTPUT}..."
   if [ "$CONVERTER" = "rsvg" ]; then
     rsvg-convert -w $SIZE -h $SIZE "$SOURCE_SVG" -o "$OUTPUT"
